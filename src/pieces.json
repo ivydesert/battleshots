@@ -1,0 +1,39 @@
+{
+	"pieces": {
+		"carrier": {
+			"size": 5,
+			"quantity": 1,
+			"shorthand": "c"
+		},
+		"battleship": {
+			"size": 4,
+			"quantity": 1,
+			"shorthand": "b"
+		},
+		"destroyer": {
+			"size": 3,
+			"quantity": 1,
+			"shorthand": "d"
+		},
+		"submarine": {
+			"size": 3,
+			"quantity": 1,
+			"shorthand": "s"
+		},
+		"pt": {
+			"size": 2,
+			"quantity": 1,
+			"shorthand": "p"
+		},
+		"nessie": {
+			"size": 1,
+			"quantity": 1,
+			"shorthand": "n"
+		},
+		"siren": {
+			"size": 1,
+			"quantity": 3,
+			"shorthand": "i"
+		}
+	}
+}

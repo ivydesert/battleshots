@@ -1,0 +1,35 @@
+{
+  "name": "battleshots",
+  "version": "1.0.0",
+  "description": "battleship drinking game",
+  "main": "dist/app.js",
+  "scripts": {
+    "watch": "nodemon -e ts,json,html -w ./src -x npm run start",
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "battleship",
+    "game"
+  ],
+  "author": "Ty DeVries",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "joi": "^14.3.1",
+    "lodash": "^4.17.15",
+    "mongodb": "^3.5.7",
+    "node-static": "^0.7.11",
+    "socket.io": "^2.3.0",
+    "ts-node": "^8.10.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.6",
+    "@types/node": "^13.13.4",
+    "tslint": "^6.1.2",
+    "typescript": "^3.8.3"
+  }
+}
