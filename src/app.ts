@@ -30,7 +30,12 @@ server.listen(3000, () => {
 });
 
 app.use(express.json());
-app.use(express.static('public')); // static web content
+app.use((req, res, next) => {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Origin', 'Origin, X-Requested-With, Content-Type, Accept');
+	next();
+});
+// app.use(express.static('public'));
 
 // db connection
 client.connect((err, db) => {
@@ -58,12 +63,26 @@ app.get('/games', (req, res) => {
 });
 
 app.post('/game', (req, res) => {
-	const game = new Game();
+	const game: Game = new Game();
 	dbo.collection('games').insertOne(game, (_err, _res) => {
 		if (_err) throw _err;
 		res.send(game);
 	});
 });
+
+app.post('/game/:id', (req, res) => {
+	const id: string = req.params.id;
+	dbo.collection('games').findOneAndUpdate({id},
+	{
+		$setOnInsert: new Game(id)
+	}, {
+		returnOriginal: false,
+		upsert: true
+	}, (err, game) => {
+		if(err) throw err;
+		res.send(game.value);
+	});
+})
 
 app.get('/game/:id', (req, res) => {
 	dbo.collection('games').findOne({'_id': req.params.id}, (err, game) => {
@@ -80,7 +99,7 @@ app.get('/game/:id/:row/:col', (req, res) => {
 		const g: Game = new Game(game._id, game.grid);
 		console.log(`(${row}, ${col})`, g.guess(row, col));
 		res.send(g.guess(row, col));
-    });
+	});
 });
 
 /*app.get('/random', (req, res) => {

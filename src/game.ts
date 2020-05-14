@@ -7,7 +7,7 @@ export class Game {
 
 	constructor(id?: string, grid?: Grid, guesses?: Grid) {
 		this._id = id || this.generateId();
-		this.grid = grid.board ? new Grid(grid.board) : new Grid();
+		this.grid = grid?.board ? new Grid(grid.board) : new Grid();
 		this.guesses = guesses?.board ? new Grid(guesses.board) : this.generateEmptyBoard();
 	}
 
